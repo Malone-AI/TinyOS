@@ -21,3 +21,24 @@ start:
     mov [8],ax
     mov [10],bx
     mov [12],cx
+    ; 获取第一块硬盘的信息。
+    mov ax,#0x0000
+    mov ds,ax
+    lds si,[4*0x41]
+    mov ax,#INITSEG
+    mov es,ax
+    mov di,#0x0080
+    mov cx,#0x10
+    rep
+    movsb
+    ; 获取第二块硬盘的信息。
+    mov ax,#0x0000
+    mov ds,ax
+    lds si,[4*0x46]
+    mov ax,#INITSEG
+    mov es,ax
+    mov di,#0x0090
+    mov cx,#0x10
+    rep
+    movsb
+    cli ; 关中断
