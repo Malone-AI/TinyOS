@@ -42,3 +42,17 @@ start:
     rep
     movsb
     cli ; 关中断
+
+    mov ax,#0x0000
+    cld
+do_move:
+    mov es,ax
+    add ax,#0x1000
+    cmp ax,#0x9000
+    jz  end_move
+    mov ds,ax
+    sub di,di
+    sub si,si
+    mov cx,#0x8000
+    rep movsw
+    jmp do_move
