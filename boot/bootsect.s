@@ -24,3 +24,10 @@ mov dx,#0x0000
 mov ax,#0x0000
 int 0x13
 jmp load_setup
+ok_load_setup:
+    ; ...
+    mov ax,#0x1000
+    mov es,ax       ; segment of 0x10000
+    call read_it
+    ; ...
+    jmpi 0,0x9020
