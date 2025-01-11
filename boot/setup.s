@@ -56,3 +56,11 @@ do_move:
     mov cx,#0x8000
     rep movsw
     jmp do_move
+end_move:
+    ; ...
+    lidt  idt_48
+    lgdt  gdt_48
+
+idt_48:
+    .word   0
+    .word   0,0
